@@ -77,7 +77,7 @@ def generate_email(domain):
     return email
 
 
-def enter(fname, lname, size, domain, proxy_list):
+def enter(fname, lname, size, domain, proxy_list, entry, entries):
     # Setup session
     link = "http://www.thenextdoor.fr/concours/confirm.php"
     headers = {
@@ -118,7 +118,7 @@ def enter(fname, lname, size, domain, proxy_list):
             log('e', "Connection failed while attempting to submit entry.")
             return
     
-    log('s', "Entered raffle with email <" + email + ">.")
+    log('s', "Entered raffle with email <" + email + "> (Entry " + str(entry + 1) + "/" + str(entries) + ").")
 
 
 if(__name__ == "__main__"):
@@ -128,9 +128,9 @@ if(__name__ == "__main__"):
     # User settings
     first_name = "Bill"
     last_name = "Nye"
-    size = "45,5"  # Use a , instead of . for half sizes. EU sizing.
+    size = "45"  # Use a , instead of . for half sizes. EU sizing.
     domain = "sharanga.pw"  # Enter your catch-all email domain here
-    entries = 10
+    entries = 100000
 
     for count in range(0, entries):
-        enter(first_name, last_name, size, domain, proxy_list)
+        enter(first_name, last_name, size, domain, proxy_list, count, entries)
