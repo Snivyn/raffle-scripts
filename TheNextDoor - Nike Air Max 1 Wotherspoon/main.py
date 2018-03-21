@@ -130,7 +130,7 @@ if(__name__ == "__main__"):
     last_name = "Nye"
     size = "45"  # Use a , instead of . for half sizes. EU sizing.
     domain = "sharanga.pw"  # Enter your catch-all email domain here
-    entries = 100000
+    entries = 10
 
     for count in range(0, entries):
         enter(first_name, last_name, size, domain, proxy_list, count, entries)
