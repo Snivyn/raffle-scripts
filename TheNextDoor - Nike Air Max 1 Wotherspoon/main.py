@@ -124,8 +124,6 @@ def enter(fname, lname, size, domain, proxy_list):
 if(__name__ == "__main__"):
     # Load proxies
     proxy_list = read_from_txt("proxies.txt")
-    # Enter raffle approximately 10 times per IP
-    max_attempts = 10 * len(proxy_list)
     
     # User settings
     first_name = "Bill"
