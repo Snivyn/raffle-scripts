@@ -34,24 +34,28 @@ if(__name__ == "__main__"):
     link = "https://api.getmylevisjordans.co.uk/submit-form"    
     
     for i in range(1, entries + 1):
-        email = 's' + 'h' + generate_email(domain)
-        payload = {
-            "email": email,
-            "fullName": full_name,
-            "phoneNumber": generate_number(207),
-            "size": "m" + str(size),
-            "color": colour,
-            "privacyPolicyConsent": True
-        }
+        try:
+            email = 's' + 'h' + generate_email(domain)
+            payload = {
+                "email": email,
+                "fullName": full_name,
+                "phoneNumber": generate_number(207),
+                "size": "m" + str(size),
+                "color": colour,
+                "privacyPolicyConsent": True
+            }
+            
+            if(phone_number != ""):
+                payload["phoneNumber"] = phone_number
         
-        if(phone_number != ""):
-            payload["phoneNumber"] = phone_number
+            r = requests.post(link, json=payload, verify=False)
     
-        r = requests.post(link, json=payload, verify=False)
-        
-        if(r.json()["message"] == "Form submitted"):
-            print("[SUCCESS] Entry " + str(i) + '/' + str(entries) +
-                  " entered successfully with email " + email + ".")
-        else:
-            print("[ERROR] Entry " + str(i) + '/' + str(entries) +
+            if(r.json()["message"] == "Form submitted"):
+                print("[SUCCESS] Entry " + str(i) + '/' + str(entries) +
+                      " entered successfully with email " + email + ".")
+            else:
+                print("[ERROR] Entry " + str(i) + '/' + str(entries) +
+                      " failed with email " + email + " (" + r.text + ").")
+        except:
+            print("[ERROR] An unknown error occurred: " + str(e))
                   " failed with email " + email + " (" + r.text + ").")
